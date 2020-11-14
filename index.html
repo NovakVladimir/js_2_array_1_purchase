@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Purchase</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <form>
+        
+        <p>Write the name of the product</p>
+        <input type="text" id="userProduct">
+        <p>Write which quantity of this product do you want to buy</p>
+        <input type="number" id="userQuantity">
+        <p>Select is this product purchased or not</p>
+        <div>
+            <input type="radio" value="true" name= "purchased" id="purchased_1">
+            <label for="purchased_1"> Purchased</label>
+        </div>
+        <div>
+            <input type="radio" value="false" name= "purchased" id="purchased_2">
+            <label for="purchased_2"> Not purchased</label>
+        </div>
+
+        <input type="button" value="Click on me" onclick="addPurchase()">
+    </form>
+    <p id="message"></p>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
