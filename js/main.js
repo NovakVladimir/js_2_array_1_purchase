@@ -1,6 +1,34 @@
 
+var arr = [];
 function addPurchase() {
-    alert("sdflsdf");
+    let nameProduct = document.getElementById("userProduct").value;
+    let quantityProduct = document.getElementById("userQuantity").value;
+    let isBuyed;
+
+    switch(true) {
+        case document.getElementById("purchased_1").checked===true:
+            isBuyed = true;
+        break;
+        case document.getElementById("purchased_2").checked===true:
+            isBuyed = false;
+        break;
+        default: alert("select is product purchased or not");
+    }
+
+    let purchase = {
+        name: nameProduct,
+        quantity: quantityProduct,
+        purchased: isBuyed,
+    }
+
+    arr.push(purchase);
+
+    document.getElementById("message").innerHTML = `${arr[0].name} - ${arr[0].quantity}`;
+
+    alert(arr[3].name);
+    alert(arr);
+
+    
 }
 //     let numb = document.getElementById("money").value;
 //     let rateEur = 1.18;
