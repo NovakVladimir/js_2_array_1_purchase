@@ -7,10 +7,10 @@ function addPurchase() {
 
     switch(true) {
         case document.getElementById("purchased_1").checked===true:
-            isBuyed = true;
+            isBuyed = "checked";
         break;
         case document.getElementById("purchased_2").checked===true:
-            isBuyed = false;
+            isBuyed = "";
         break;
         default: alert("select is product purchased or not");
     }
@@ -23,10 +23,12 @@ function addPurchase() {
 
     arr.push(purchase);
 
-    document.getElementById("message").innerHTML = `${arr[0].name} - ${arr[0].quantity}`;
+    message.insertAdjacentHTML('beforeend', `<input type="checkbox" ${isBuyed} id="isBuyed_${arr.length - 1}"><label for="isBuyed_${arr.length - 1}">${arr[arr.length-1].name} - ${arr[arr.length -1].quantity}</label>`);
 
-    alert(arr[3].name);
-    alert(arr);
+    // document.getElementById("message").innerHTML = `${arr[0].name} - ${arr[0].quantity}`;
+
+    // alert(arr[3].name);
+    // alert(arr);
 
     
 }
