@@ -42,11 +42,13 @@ input[type="button"]:hover {
 
 input[type="checkbox"] {
     display: inline;
-    margin-left: 40px;
+    margin-right: 30px;
 }
 
-div.container {
+div#container {
     justify-content: flex-start;
     justify-items: flex-start;
     align-items: flex-start;
+    text-align: left;
+    font-size: 25px;
 }

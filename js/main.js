@@ -1,8 +1,19 @@
 
 var arr = [];
+
 function addPurchase() {
+    // LET'S GET VALUE OF INPUT
     let nameProduct = document.getElementById("userProduct").value;
+    if(nameProduct == 0) {
+        alert("Please, enter the name of the product");
+        return; 
+    }
+
     let quantityProduct = document.getElementById("userQuantity").value;
+    if(quantityProduct == 0) {
+        alert("Please, enter the quantity of the product");
+        return
+    }
     let isBuyed;
 
     switch(true) {
@@ -13,49 +24,58 @@ function addPurchase() {
             isBuyed = "";
         break;
         default: alert("select is product purchased or not");
+        return;
     }
 
+    // LET'S GET AN OBJECT
     let purchase = {
         name: nameProduct,
         quantity: quantityProduct,
         purchased: isBuyed,
     }
 
-    arr.push(purchase);
+    // LET'S FIND IS THIS NAMEOFPRODUCT EXIST IN OUR ARRAY. IF IT IS NOT EXIST WE PUSH OBJECT TO THE ARRAY
 
-    message.insertAdjacentHTML('beforeend', `<input type="checkbox" ${isBuyed} id="isBuyed_${arr.length - 1}"><label for="isBuyed_${arr.length - 1}">${arr[arr.length-1].name} - ${arr[arr.length -1].quantity}</label>`);
+    let findSameObj = arr.find(myproduct => myproduct.name === nameProduct);
+    if(findSameObj !== undefined) {
+        findSameObj.quantity = parseInt(findSameObj.quantity, 10) + parseInt(quantityProduct, 10);
+        findIndOfSameObj = arr.findIndex(myproduct => myproduct.name === nameProduct);
+        arr[findIndOfSameObj].quantity = findSameObj.quantity;
+    }
+    else {
+        arr.push(purchase);
+    }
+  
+// LET DELETE REFLECTION OF ARRAY IN HTML IF IT IS EXIST
 
-    // document.getElementById("message").innerHTML = `${arr[0].name} - ${arr[0].quantity}`;
-
-    // alert(arr[3].name);
-    // alert(arr);
-
-    
+let myNode = document.getElementById("container");
+while (myNode.firstChild) {
+    myNode.removeChild(myNode.firstChild);
 }
-//     let numb = document.getElementById("money").value;
-//     let rateEur = 1.18;
-//     let rateUan = 0.15;
-//     let rateAzn = 0.61;
-//     var result;
-//     let curr;
-// function
-//     switch(true) {
-//         case document.getElementById("currency_1").checked===true: 
-//             curr = "EUR";
-//             result = numb / rateEur;
-//         break;
-//         case document.getElementById("currency_2").checked===true:
-//             curr = "UAN";
-//             result = numb / rateUan;
-//         break;
-//         case document.getElementById("currency_3").checked===true: 
-//             curr = "AZN";
-//             result = numb / rateAzn;
-//         break;
-//     }
 
-//     result = `You'll get ${result.toFixed(2)} ${curr}`;
-//     document.getElementById("message").innerHTML = result;
-//     document.getElementById("message").style.backgroundColor = "rgba(20,200,200,0.8)";
-//     return result;
-// }
+// LET DISPLAY OUR NEW ARRAY IN HTML
+
+for(let i = 0; i < arr.length; i++) {
+    container.insertAdjacentHTML('beforeend', `<input type="checkbox" ${arr[i].purchased} id="inContainer_${i}" <label for ="inContainer_${i}">${arr[i].name} - ${arr[i].quantity}</p>`);
+    }
+}
+
+function mySort() {
+// lET SORT ARRAY
+    arr.sort(function(a, b) {
+        return a.purchased - b.purchased;
+    });
+
+    // LET DELETE REFLECTION OF ARRAY IN HTML IF IT IS EXIST
+
+let myNode = document.getElementById("container");
+while (myNode.firstChild) {
+    myNode.removeChild(myNode.firstChild);
+}
+
+// LET DISPLAY OUR NEW ARRAY IN HTML
+
+for(let i = 0; i < arr.length; i++) {
+    container.insertAdjacentHTML('beforeend', `<input type="checkbox" ${arr[i].purchased} id="inContainer_${i}" <label for ="inContainer_${i}">${arr[i].name} - ${arr[i].quantity}</p>`);
+    }
+}
